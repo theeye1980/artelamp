@@ -1,4 +1,4 @@
-function cartOpener(){
+function cartOpener(){  
   $('.headercart p').click(function(){
     $(this).closest('.headercart').toggleClass('open');
     $('.cartclose').slideToggle();
@@ -11,7 +11,7 @@ function clearmask(){
 	})
 }
 function perebros(){
-	$('#oformit').on('click', function() { // Переброс пользователя на корзину из летающей корзины
+	$('#oformit').on('click', function() { // Перебрsdfос пользователя на корзину из летающей корзины
 		document.location.href = 'https://www.artelamp.it/ru/cart.html';
 	});
 	$('#kupit').on('click', function() { // Переброс пользователя на корзину из летающей корзины
