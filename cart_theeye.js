@@ -38,9 +38,12 @@ function cartCalc(){
 	var action = $(this).data('action'); //мои потуги
     var a = $(this).closest('.cartcalc').find('input').val();
 	var total_goods=$('#total_goods').html();
+	var id = $(this).data('id'); //мои потуги
+	
 	
 	total_goods=parseInt(total_goods);
 	console.log('total_goods: ', total_goods);
+	console.log('id: ', id);
 	
 	var price_i=$(this).parent().parent().parent(); //	 ('.cartcloseun2 span');
 	var real_price=$(price_i).find("span").html();
@@ -58,6 +61,10 @@ function cartCalc(){
 	  // уменьшаем итоговую сумму на нужное действие
 	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
 	  $('#total_goods').html(total_goods-1);
+	  
+	  // меняем куку
+	  
+	  
 	  if(action){
 	  var param=[];
 			param[0]='plus';
@@ -76,8 +83,10 @@ function cartCalc(){
   });
   $('.cartcalc .ccalc-plus').click(function(){
 	var action = $(this).data('action'); //мои потуги
+	var id = $(this).data('id'); //мои потуги
     var a = $(this).closest('.cartcalc').find('input').val();
 	var total_goods=$('#total_goods').html();
+	
 	total_goods=parseInt(total_goods);
 	
 	var price_i=$(this).parent().parent().parent(); //	 ('.cartcloseun2 span');
@@ -88,11 +97,12 @@ function cartCalc(){
 	sum=parseInt(sum);
 	
 	var new_sum=sum+parseInt(real_price);
-
+	
 	console.log('price_i: ', price_i.html());
 	console.log('real_price: ', real_price);
 	console.log('sum: ', sum);
 	console.log('new_sum: ', new_sum);
+	
 	
 	
     var n = $(this).closest('.cartcalc').attr('data-maxval');
@@ -104,6 +114,13 @@ function cartCalc(){
       $(this).closest('.cartcalc').find('input').val(b);
 	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
 	  $('#total_goods').html(total_goods+1);
+	  //перезаписываем куки
+	  var 	param=[];
+			param[0]=id; // id
+			param[1]=parseInt(real_price);  // стоимость
+			param[2]=b // количество
+	  ajax_cookie(param);
+	   alert("проверь куку");
 	  //запускаем перерисовку ajax корзины
 	  if(action){
 	  var param=[];
@@ -140,6 +157,31 @@ function pereschet_itogo(param){
 			output.html(json); // выводим на страницу данные, полученные с сервера
 			cartCalc();
 			delCartUn();
+			}
+		});
+	
+}
+
+function ajax_cookie(param){
+		 // переустановка куки в режиме ajax
+		 var output = $("#tester"); // блок вывода информации
+		 
+		$.ajax({
+		  url: '/ajax-cookie.html', // путь к php-обработчику
+		  type: 'POST', // метод передачи данных
+		  dataType: 'html', // тип ожидаемых данных в ответе
+		  data: {key: param}, // данные, которые передаем на сервер
+		  beforeSend: function(){ // Функция вызывается перед отправкой запроса
+			output.text('Запрос отправлен. Ждите ответа.');
+		  },
+		  error: function(req, text, error){ // отслеживание ошибок во время выполнения ajax-запроса
+			output.text('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
+		  },
+		  complete: function(){ // функция вызывается по окончании запроса
+			//output.append('<p>Запрос полностью завершен!</p>');
+		  },
+		  success: function(json){ // функция, которая будет вызвана в случае удачного завершения запроса к серверу
+			output.html(json); // json - переменная, содержащая данные ответа от сервера. Обзывайте её как угодно ;)
 			}
 		});
 	
