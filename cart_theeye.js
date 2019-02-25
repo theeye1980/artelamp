@@ -1,4 +1,4 @@
-function cartOpener(){  
+function cartOpener(){
   $('.headercart p').click(function(){
     $(this).closest('.headercart').toggleClass('open');
     $('.cartclose').slideToggle();
@@ -11,7 +11,7 @@ function clearmask(){
 	})
 }
 function perebros(){
-	$('#oformit').on('click', function() { // Перебрsdfос пользователя на корзину из летающей корзины
+	$('#oformit').on('click', function() { // Переброс пользователя на корзину из летающей корзины
 		document.location.href = 'https://www.artelamp.it/ru/cart.html';
 	});
 	$('#kupit').on('click', function() { // Переброс пользователя на корзину из летающей корзины
@@ -37,10 +37,28 @@ function cartCalc(){
   $('.cartcalc .ccalc-minus').click(function(){
 	var action = $(this).data('action'); //мои потуги
     var a = $(this).closest('.cartcalc').find('input').val();
+	
+	var price_i=$(this).parent().parent().parent(); //	 ('.cartcloseun2 span');
+	var real_price=$(price_i).find("span").html();
+	
+	var sum=$('#final_fly_cart_sum').html();
+	sum=$.trim(sum);
+	sum=parseInt(sum);
+	
+	var new_sum=sum-real_price;
+
+	console.log('price_i: ', price_i.html());
+	console.log('real_price: ', real_price);
+	console.log('sum: ', sum);
+	console.log('new_sum: ', new_sum);
+
+	alert('пауза');
     if(a>1){
       var b = +a-1;
       $(this).closest('.cartcalc').find('input').val(b);
-	  
+	  // уменьшаем итоговую сумму на нужное действие
+	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
+		
 	  // находим ближайшую сумму
 	  /*
 		  var sum='sum_' + action;
