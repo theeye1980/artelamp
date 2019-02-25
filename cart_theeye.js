@@ -104,7 +104,6 @@ function cartCalc(){
       $(this).closest('.cartcalc').find('input').val(b);
 	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
 	  $('#total_goods').html(total_goods+1);
-	  alert('увеличили на 1');
 	  //запускаем перерисовку ajax корзины
 	  if(action){
 	  var param=[];
