@@ -37,6 +37,10 @@ function cartCalc(){
   $('.cartcalc .ccalc-minus').click(function(){
 	var action = $(this).data('action'); //мои потуги
     var a = $(this).closest('.cartcalc').find('input').val();
+	var total_goods=$('#total_goods').html();
+	
+	total_goods=parseInt(total_goods);
+	console.log('total_goods: ', total_goods);
 	
 	var price_i=$(this).parent().parent().parent(); //	 ('.cartcloseun2 span');
 	var real_price=$(price_i).find("span").html();
@@ -53,6 +57,7 @@ function cartCalc(){
       $(this).closest('.cartcalc').find('input').val(b);
 	  // уменьшаем итоговую сумму на нужное действие
 	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
+	  $('#total_goods').html(total_goods-1);
 	  if(action){
 	  var param=[];
 			param[0]='plus';
@@ -72,6 +77,9 @@ function cartCalc(){
   $('.cartcalc .ccalc-plus').click(function(){
 	var action = $(this).data('action'); //мои потуги
     var a = $(this).closest('.cartcalc').find('input').val();
+	var total_goods=$('#total_goods').html();
+	total_goods=parseInt(total_goods);
+	
 	var price_i=$(this).parent().parent().parent(); //	 ('.cartcloseun2 span');
 	var real_price=$(price_i).find("span").html();
 	
@@ -95,6 +103,7 @@ function cartCalc(){
       var b = +a+1;
       $(this).closest('.cartcalc').find('input').val(b);
 	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
+	  $('#total_goods').html(total_goods+1);
 	  //запускаем перерисовку ajax корзины
 	  if(action){
 	  var param=[];
