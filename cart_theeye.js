@@ -58,18 +58,6 @@ function cartCalc(){
       $(this).closest('.cartcalc').find('input').val(b);
 	  // уменьшаем итоговую сумму на нужное действие
 	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
-		
-	  // находим ближайшую сумму
-	  /*
-		  var sum='sum_' + action;
-		  var summ=document.getElementById(sum);
-		  summ.style.color = "green";
-		  summ.innerHTML = "Новое значение";
-		  
-		  alert(sum);
-		  alert(summ);
-	  */
-	   	  //запускаем перерисовку ajax корзины
 	  if(action){
 	  var param=[];
 			param[0]='plus';
@@ -89,6 +77,21 @@ function cartCalc(){
   $('.cartcalc .ccalc-plus').click(function(){
 	var action = $(this).data('action'); //мои потуги
     var a = $(this).closest('.cartcalc').find('input').val();
+	var price_i=$(this).parent().parent().parent(); //	 ('.cartcloseun2 span');
+	var real_price=$(price_i).find("span").html();
+	
+	var sum=$('#final_fly_cart_sum').html();
+	sum=$.trim(sum);
+	sum=parseInt(sum);
+	
+	var new_sum=sum+real_price;
+
+	console.log('price_i: ', price_i.html());
+	console.log('real_price: ', real_price);
+	console.log('sum: ', sum);
+	console.log('new_sum: ', new_sum);
+	
+	
     var n = $(this).closest('.cartcalc').attr('data-maxval');
     if(a == n){
       var b = a;
@@ -96,7 +99,7 @@ function cartCalc(){
     }else{
       var b = +a+1;
       $(this).closest('.cartcalc').find('input').val(b);
-	  
+	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
 	  //запускаем перерисовку ajax корзины
 	  if(action){
 	  var param=[];
