@@ -47,12 +47,7 @@ function cartCalc(){
 	
 	var new_sum=sum-real_price;
 
-	console.log('price_i: ', price_i.html());
-	console.log('real_price: ', real_price);
-	console.log('sum: ', sum);
-	console.log('new_sum: ', new_sum);
-
-	alert('пауза');
+	//alert('пауза');
     if(a>1){
       var b = +a-1;
       $(this).closest('.cartcalc').find('input').val(b);
@@ -84,7 +79,7 @@ function cartCalc(){
 	sum=$.trim(sum);
 	sum=parseInt(sum);
 	
-	var new_sum=sum+real_price;
+	var new_sum=sum+parseInt(real_price);
 
 	console.log('price_i: ', price_i.html());
 	console.log('real_price: ', real_price);
