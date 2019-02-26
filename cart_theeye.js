@@ -62,16 +62,24 @@ function cartCalc(){
 	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
 	  $('#total_goods').html(total_goods-1);
 	  
-	  // меняем куку
+	  
 	  
 	  
 	  if(action){
-	  var param=[];
+			var param=[];
 			param[0]='plus';
 			param[1]=action;
 			param[2]=b
 					  
 			pereschet_itogo(param); 
+	  } else {
+		  //перезаписываем куки
+			var 	param=[];
+			param[0]=id; // id
+			param[1]=parseInt(real_price);  // стоимость
+			param[2]=b // количество
+			ajax_cookie(param);
+		  
 	  }
 	  
 	  
@@ -114,21 +122,23 @@ function cartCalc(){
       $(this).closest('.cartcalc').find('input').val(b);
 	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
 	  $('#total_goods').html(total_goods+1);
-	  //перезаписываем куки
-	  var 	param=[];
-			param[0]=id; // id
-			param[1]=parseInt(real_price);  // стоимость
-			param[2]=b // количество
-	  ajax_cookie(param);
-	   alert("проверь куку");
+	  
+	  
 	  //запускаем перерисовку ajax корзины
 	  if(action){
-	  var param=[];
+			var param=[];
 			param[0]='plus';
 			param[1]=action;
 			param[2]=b
 					  
 			pereschet_itogo(param); 
+	  } else {
+			//перезаписываем куки
+			var 	param=[];
+			param[0]=id; // id
+			param[1]=parseInt(real_price);  // стоимость
+			param[2]=b // количество
+			ajax_cookie(param);
 	  }
     }
   });
