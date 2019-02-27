@@ -37,7 +37,11 @@ define('MODX_API_MODE', true);
 		function sum($count) {
 			$sum=$price[1]*$count;
 		}
-	
+		
+		function getcollection($id){
+			//получаем коллекцию товара
+			
+		}
 	
 	
 	}
