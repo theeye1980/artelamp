@@ -32,14 +32,47 @@ define('MODX_API_MODE', true);
 				$this->oldprice = $r_tv['oldprice'];
 			}
 			$this->img='/imag_ftp/'.$this->art.'/'.$this->art.'.jpg'; // определяем путь изображений
+		
 		}
 		
 		function sum($count) {
 			$sum=$price[1]*$count;
 		}
 		
+		
 		function getcollection($id){
 			//получаем коллекцию товара
+			//выдергиваем имеющиеся серии из сайта 
+			global $modx;
+			$sql = "SELECT * from `modx_site_tmplvar_contentvalues` WHERE (`modx_site_tmplvar_contentvalues`.`contentid`='$id')";
+			$statement = $modx->query($sql);
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+			foreach($result as $r){
+				$tv_id=$r['tmplvarid'];
+				$set[$tv_id]= $r['value'];
+				
+				switch ($tv_id) {
+					case 13:
+						$this->collection = $set[$tv_id];
+						break;
+					case 46:
+						$this->stranica_cat = $set[$tv_id];
+						break;
+					
+					case 48:
+						$this->cat_type = $set[$tv_id];
+						break;
+					
+					case 49:
+						$this->new_razdel_cat = $set[$tv_id];
+						break;
+						
+				}
+				
+			}
+			
+			
 			
 		}
 	
