@@ -1,0 +1,603 @@
+.headercart > p{
+  padding: 20px 44px 20px 50px;
+  float: right;
+  font-size: 16px;
+  background: #f6f6f6 url('../images/rcart.png') no-repeat 14px center;
+  position: relative;
+  border: 1px solid #000000;
+  cursor: pointer;
+  clear: both;
+}
+.headercart > p span{
+  font-weight: 700;
+}
+.headercart > p:before{
+  content: "";
+  position: absolute;
+  right: 17px;
+  width: 13px;
+  top: 50%;
+  margin-top: -4px;
+  height: 8px;
+  background: url('../images/cartopen.png') no-repeat center center;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.headercart.open > p:before{
+  -o-transform: rotate3d(1, 0, 0, 180deg);
+  -ms-transform: rotate3d(1, 0, 0, 180deg);
+  -moz-transform: rotate3d(1, 0, 0, 180deg);
+  -webkit-transform: rotate3d(1, 0, 0, 180deg);
+  transform: rotate3d(1, 0, 0, 180deg);
+}
+.headercart{
+  position: relative;
+}
+.addcartval{
+  padding: 18px 20px;
+  border: 1px solid #000000;
+  margin-bottom: 20px;
+}
+.cartcost{
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 22px;
+  height: 66px;
+}
+.cartcost strong{
+  float: right;
+  display: inline-block;
+  vertical-align: middle;
+  height: 66px;
+  text-align: center;
+}
+.cartcost strong em{
+  display: block;
+  font-size: 44px;
+}
+.cartcost strong del{
+  display: block;
+  font-size: 22px;
+  color: #ff0524;
+}
+.cartcost span{
+  display: inline-block;
+  height: 66px;
+  line-height: 66px;
+}
+.coststore{
+  clear: both;
+  font-size: 22px;
+  margin-bottom: 22px;
+}
+.coststore strong{
+  float: right;
+}
+.addcartvalbtn{
+  clear: both;
+}
+.addcartvalbtn button{
+  width: 100%;
+  height: 62px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.btnaddcart1{
+  padding-right: 7px;
+  float: left;
+  width: 50%;
+}
+.btnaddcart2{
+  padding-left: 7px;
+  float: left;
+  width: 50%;
+}
+.btnaddcart1 button{
+  border: 1px solid #b3b3b3;
+  background: #ececec;
+  color: #818181;
+}
+.btnaddcart2 button{
+  border: 1px solid #c40f26;
+  background: linear-gradient(to bottom, #f44b60, #ff0625);
+  color: #ffffff;
+}
+.cartclose{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding: 13px;
+  border: 1px solid #000000;
+  background: #ffffff;
+  z-index: 9;
+  margin-top: -1px;
+  display: none;
+}
+.cartcloseun1{
+  width: 60px;
+  height: 60px;
+  float: left;
+  border: 1px solid #b3b3b3;
+  line-height: 56px;
+  text-align: center;
+}
+.cartcloseun1 img{
+  max-width: 56px;
+  max-height: 56px;
+}
+.cartcloseun2{
+  width: 180px;
+  float: left;
+  padding: 0 7px;
+}
+.cartcloseun2 h6{
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 3px;
+  line-height: 19px;
+}
+.cartcloseun2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.cartcloseun3 .cartcalc input{
+  width: 50px;
+  height: 30px;
+  float: left;
+  font-size: 16px;
+  text-align: center;border: 1px solid #d6d6d6;
+}
+.cartcalc button{
+  float: left;
+  display: inline-block;
+  height: 44px;
+  width: 44px;
+  border: 1px solid #d6d6d6;
+  text-align: center;
+  background: #f9f9f9;
+}
+.cartcloseun3{
+  float: left;
+  width: 104px;
+}
+.cartcloseun3 .cartcalc button{
+  width: 25px;
+  height: 30px;
+  background: url('../images/cartopen.png') no-repeat center center;
+  background-size: 9px auto;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.cartcloseun3 .cartcalc button:hover{
+  background: #ff0625 url('../images/cartopenh.png') no-repeat center center;
+  background-size: 9px auto;
+}
+.cartcloseun3 .ccalc-plus{
+  width: 9px;
+  -o-transform: rotate3d(1, 0, 0, 180deg);
+  -ms-transform: rotate3d(1, 0, 0, 180deg);
+  -moz-transform: rotate3d(1, 0, 0, 180deg);
+  -webkit-transform: rotate3d(1, 0, 0, 180deg);
+  transform: rotate3d(1, 0, 0, 180deg);
+}
+.cartcloseun{
+  margin-bottom: 18px;
+}
+.cartclosebut .addcartvalbtn button {
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.cartclosebut p{
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.cartclosebut{
+  margin-top: 15px;
+  border-top: 1px solid #000000;
+}
+.cartclosebut p span{
+  float: right;
+}
+#cart1 .modal-dialog,
+#cart2 .modal-dialog,
+#cart3 .modal-dialog{
+  width: 525px;
+  padding: 18px;
+}
+#cart1 .modal-content,#cart2 .modal-content,#cart3 .modal-content{
+  border: 1px solid #000000;
+  border-radius: 0px;
+  box-shadow: none;
+}
+.cartmodtit{
+  margin: 0 0 17px;
+  border-bottom: 1px solid #b3b3b3;
+  padding: 0 0 11px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.modal .cartcloseun2{
+  width: auto;
+  padding: 0 20px 0px;
+}
+.modal .cartcloseun2 h6{
+  font-size: 20px;
+  line-height: 23px;
+}
+.modal .cartcloseun4 p{
+  font-size: 20px;
+  font-weight: 700;
+  display: block;
+}
+.modal .cartcloseun{
+  display: table;
+  width: 100%;
+}
+.modal .cartcloseun>div{
+  display: table-cell;
+  vertical-align: middle;
+  float: none;
+}
+.modal .cartcloseun4{
+  text-align: right;
+  width: 130px;
+}
+.modal .cartcloseun2 span{
+  display: block;
+}
+.closemod{
+  background: url('../images/closemod.png') no-repeat center center !important;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  opacity: 1;
+  z-index: 2;
+}
+.modal-body{
+  position: relative;
+}
+.modal-body .addcartvalbtn{
+  padding-bottom: 20px;
+  border-bottom: 1px solid #b3b3b3;
+}
+.modal-body .addcartvalbtn button{
+  height: 50px;
+  font-size: 18px;
+}
+.cartmoddelive{
+  padding-top: 20px;
+  text-align: center;
+}
+.cartmoddelive p{
+  margin-top: 10px;
+  font-size: 20px;
+  color: #7b7b7b;
+  font-weight: 700;
+}
+.thankred{
+  font-size: 22px;
+  font-weight: 700;
+  color: #ff0524;
+  line-height: 1.3;
+  padding: 30px 0;
+}
+#cart2 .modal-dialog{
+  width: 520px;
+  max-width: 100%;
+}
+.cartoneclick span{
+  display: inline-block;
+  font-size: 20px;
+  color: #000000;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 15px;
+  float: left;
+}
+.cartoneclick span.inponewr{
+  display: inline-block;
+  width: 194px;
+  height: auto;
+  line-height: inherit;
+}
+.cartoneclick span.inponewr input{
+  width: 100%;
+  height: 50px;
+  border: 1px solid #b3b3b3;
+  margin-right: 15px;
+  text-align: left;
+}
+.cartoneclick .btnonecl{
+  border: 1px solid #c40f26;
+  background: linear-gradient(to bottom, #f44b60, #ff0625);
+  color: #ffffff;
+  height: 50px;
+  width: 150px;
+  float: right;
+}
+.cartoneclick span.inponewr i{
+  font-style: normal;
+  font-size: 12px;
+  color: #8d8d8d;
+  line-height: 16px;
+}
+.checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  margin: 10px 0 0 20px;
+}
+label{
+  font-weight: normal;
+}
+.checkbox + label {
+  position: relative;
+  padding: 0 0 0 35px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #8d8d8d;
+}
+.checkbox + label a{
+  color: inherit;
+  text-decoration: underline;
+  line-height: 1.2;
+}
+.checkbox + label:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  background: #ffffff;
+  border: 2px solid #000000;
+  transition: .2s;
+}
+.checkbox + label:after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  transition: .2s;
+  opacity: 0;
+  background: url('../images/aftcheck.png') no-repeat center center;
+}
+.checkbox:checked + label:after {
+  opacity: 1;
+}
+.modconfidence{
+  padding-top: 15px;
+  clear: both;
+  margin-bottom: 12px;
+}
+.b1 .container{
+  position: relative;
+}
+.fix.headercart{
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: .7s;
+  z-index: 999;
+  width: 400px;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .header_login-reg p span {
+    font-size: 18px;
+  }
+  .cartcost, .coststore{
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+  .cartcost strong em {
+    font-size: 36px;
+  }
+  .cartcost{
+    height: 56px;
+  }
+  .addcartvalbtn button{
+    font-size: 18px;
+    height: 44px;
+  }
+  .addcartval {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  .cartcloseun1 {
+    width: 54px;
+    height: 54px;
+    line-height: 50px;
+  }
+  .cartcloseun1 img {
+    max-width: 48px;
+    max-height: 48px;
+  }
+  .cartcloseun2 h6{
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .cartcloseun2 {
+    width: 160px;
+  }
+  .cartclosebut p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .cartclose{
+    width: 345px;
+  }
+  .cartcloseun3{
+    width: 102px;
+  }
+  .cartcloseun2 {
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .headercart > p{
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    padding: 0;
+    background-position: center center;
+    background-size: 18px auto;
+    color: transparent;
+  }
+  .headercart > p span{
+    position: absolute;
+    z-index: 2;
+    right: -7px;
+    top: -7px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    background: #ff0524;
+    border-radius: 50%;
+    color: #ffffff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .header_login-reg p span {
+    font-size: 16px;
+  }
+  body{
+    overflow-x: hidden;
+  }
+  .headercart > p:before{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .fix.headercart {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+  }
+  .product-info-title {
+    font-size: 16px;
+    padding-bottom: 10px;
+  }
+  .cartcost strong em {
+    font-size: 28px;
+  }
+  .cartcost strong{
+    height: 44px;
+  }
+  .cartcost span{
+    line-height: 44px;
+    height: 44px;
+    margin-bottom: 15px;
+  }
+  .cartcost {
+    height: 50px;
+  }
+  .cartcost, .coststore, .cartcost strong del{
+    font-size: 14px;
+  }
+  .addcartvalbtn button{
+    font-size: 14px;
+  }
+  .cartclosebut p{
+    font-size: 17px;
+  }
+  .cartclose{
+    margin-top: 5px;
+  }
+  .header_login-reg{
+    margin-bottom: 10px;
+  }
+  .modal-body .addcartvalbtn button{
+    font-size: 14px;
+  }
+  .cartmodtit{
+    font-size: 16px;
+  }
+  .closemod {
+    background-size: 16px auto !important;
+    top: 14px;
+  }
+  .modal .cartcloseun2 h6{
+    font-size: 14px;
+  }
+  .modal .cartcloseun2 {
+    width: 200px;
+    padding: 0 10px 0px;
+  }
+  .modal .cartcloseun4 p{
+    font-size: 16px;
+  }
+  .modal-body .addcartvalbtn button{
+    height: 40px;
+  }
+  .cartmoddelive p{
+    font-size: 16px;
+  }
+  .header_login-reg p span {
+    font-size: 14px;
+  }
+  .cartclosebut .addcartvalbtn button{
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #cart1 .modal-dialog, #cart2 .modal-dialog, #cart3 .modal-dialog {
+    width: 320px;
+    margin: 0;
+    padding: 0;
+  }
+  .cartoneclick>*{
+    width: 100%;
+  }
+  .cartoneclick span{
+    font-size: 14px;
+    display: block;
+  }
+  .cartoneclick span.inponewr{
+    font-size: 14px;
+  }
+  .cartoneclick span {
+    display: inline-block;
+    font-size: 20px;
+    color: #000000;
+    margin-bottom: 5px;
+    margin-right: 15px;
+    float: left;
+    height: auto;
+    line-height: 1;
+  }
+  .cartoneclick span.inponewr{
+    height: 68px;
+    width: 100%;
+  }
+  .cartoneclick .btnonecl{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .cartclose {
+    width: 275px;
+  }
+  .cartcloseun1{
+    display: none;
+  }
+  .cartcloseun2 {
+    width: 143px;
+  }
+}

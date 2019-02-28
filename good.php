@@ -80,3 +80,37 @@ define('MODX_API_MODE', true);
 	}
 
 ?>
+
+____________
+
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/good.php';
+
+# дергаем информацию по ID товара из объекта good_arte
+        $good = new good_arte;
+        $good->getgooddata($newid);
+        $good->getcollection($newid);
+        $modx->setPlaceholder('collection_cart_item', $good->collection);
+
+        $sum=($good->price)*$count;
+        
+        
+        if($good->oldprice==0) $good->oldprice='';
+        
+        # Формируем блок по этому товару
+        
+        
+        
+        $modx->setPlaceholder('name_cart_item', $good->longtitle);
+        $modx->setPlaceholder('title_cart_item', $good->pagetitle);
+        $modx->setPlaceholder('price_cart_item', $good->price);
+        $modx->setPlaceholder('old_price_cart_item', $good->oldprice);
+        $modx->setPlaceholder('count_cart_item', $count);
+        $modx->setPlaceholder('art_cart_item', $good->art);
+        $modx->setPlaceholder('sum_cart_item', $sum);
+        $modx->setPlaceholder('id_cart_item', $newid);
+        
+        $out['html'] = $modx->getChunk('cart_item');
+        $out['sum']=$sum;
+        
+        return $out;
