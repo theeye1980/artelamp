@@ -1,22 +1,61 @@
 function cartCalc(){
+  
+  
   $('.cartcalc .ccalc-minus').click(function(){
+	var price = $(this).data('price'); //мои потуги
+	var action = $(this).data('action'); //мои потуги
+	var  sum_id='sum_'+action;
+	var itogsumm = $('#itogsumm').html(); 
+	
     var a = $(this).closest('.cartcalc').find('input').val();
     if(a>1){
-      var b = +a-1;
+	  // находим ID блока для вывода суммы по этому элементу
+	
+	  
+	  console.log('a: ', a);
+	  console.log('price: ', price);
+	  console.log('action: ', action);
+	  console.log('sum_id: ', sum_id);
+	  console.log('itogsumm: ', itogsumm);
+	  
+	  var b = +a-1;
+	 //меняем динамически сумму
+	  sum_tovara=b*price;
+	  itogsumm=parseInt(itogsumm)-parseInt(price);	
+	  $("span#"+sum_id).text(sum_tovara);
+	  $('#itogsumm').text(itogsumm);
+	  
       $(this).closest('.cartcalc').find('input').val(b);
     }else{
       $(this).closest('.cartcalc').find('input').val(a);
     }
   });
   $('.cartcalc .ccalc-plus').click(function(){
+	var price = $(this).data('price'); //мои потуги
+	var action = $(this).data('action'); //мои потуги
+	var sum_id='sum_'+action;
+	var itogsumm = $('#itogsumm').html(); 
+	
     var a = $(this).closest('.cartcalc').find('input').val();
     var n = $(this).closest('.cartcalc').attr('data-maxval');
+
     if(a == n){
       var b = a;
       $(this).closest('.cartcalc').find('.cartcalcmaxinf').fadeIn(500).delay(2000).fadeOut(500);
     }else{
       var b = +a+1;
+	  console.log('a: ', a);
+	  console.log('price: ', price);
+	  console.log('action: ', action);
+	  console.log('sum_id: ', sum_id);
+	  console.log('itogsumm: ', itogsumm);
+	  
       $(this).closest('.cartcalc').find('input').val(b);
+	  //меняем динамически сумму
+	  sum_tovara=b*price; 
+	  itogsumm=parseInt(itogsumm)+parseInt(price);
+	  $("span#"+sum_id).text(sum_tovara);
+	  $('#itogsumm').text(itogsumm);
     }
   });
 }

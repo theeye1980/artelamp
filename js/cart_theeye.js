@@ -1,8 +1,18 @@
 function cartOpener(){
+	
   $('.headercart p').click(function(){
     $(this).closest('.headercart').toggleClass('open');
     $('.cartclose').slideToggle();
+	
   });
+  // скрываем раскрытый блок летающей корзины, если кликаем не по ней и не по вложенным элементам
+  $(document).mouseup(function (e) {
+    var container = $('.headercart');
+		if (container.has(e.target).length === 0){
+			$('.cartclose').slideUp()
+		}
+	});
+  
 }
 function clearmask(){
 	$('.masktel').on('click', function(){
@@ -35,17 +45,22 @@ function delCartUn(){ // удаление товара из корзины
 	// ajax пересчет корзины
 			var action = $(this).data('action'); //мои потуги
 			var param=[];
-			param[0]='delete';
+			param[0]=true;
 			param[1]=action;
 			//alert (action);
 			pereschet_itogo(param); 
 	//$(this).closest('.newcart-un').remove();
   });
 }
-function _cartCalc(){
+function cartCalc(){
   $('.cartcalc .ccalc-minus').click(function(){
+	var price = $(this).data('price'); //мои потуги
 	var action = $(this).data('action'); //мои потуги
-    var a = $(this).closest('.cartcalc').find('input').val();
+	var  sum_id='sum_'+action;
+	var itogsumm = $('#itogsumm').html(); 
+	
+    
+	var a = $(this).closest('.cartcalc').find('input').val();
 	var total_goods=$('#total_goods').html();
 	var id = $(this).data('id'); //мои потуги
 	
@@ -63,7 +78,7 @@ function _cartCalc(){
 	
 	var new_sum=sum-real_price;
 
-	alert('пауза');
+	//alert('пауза');
     if(a>1){
       var b = +a-1;
       $(this).closest('.cartcalc').find('input').val(b);
@@ -71,16 +86,25 @@ function _cartCalc(){
 	  $('#final_fly_cart_sum').html(new_sum + ' руб.');
 	  $('#total_goods').html(total_goods-1);
 	  
-	  
-	  
-	  
 	  if(action){
+			//меняем динамически сумму
+			console.log('a: ', a);
+			console.log('price: ', price);
+			console.log('action: ', action);
+			console.log('sum_id: ', sum_id);
+			console.log('itogsumm: ', itogsumm);
+	  
+			
+			sum_tovara=b*price;
+			itogsumm=parseInt(itogsumm)-parseInt(price);	
+			$("span#"+sum_id).text(sum_tovara);
+			$('#itogsumm').text(itogsumm);
 			var param=[];
-			param[0]='plus';
+			param[0]=false; // перерисовывать корзину
 			param[1]=action;
 			param[2]=b
 					  
-			pereschet_itogo(param); 
+			pereschet_itogo_bez_prorisivki(param); 
 	  } else {
 		  //перезаписываем куки
 			var 	param=[];
@@ -99,7 +123,11 @@ function _cartCalc(){
 	
   });
   $('.cartcalc .ccalc-plus').click(function(){
+	var price = $(this).data('price'); //мои потуги
 	var action = $(this).data('action'); //мои потуги
+	var  sum_id='sum_'+action;
+	var itogsumm = $('#itogsumm').html(); 
+	
 	var id = $(this).data('id'); //мои потуги
     var a = $(this).closest('.cartcalc').find('input').val();
 	var total_goods=$('#total_goods').html();
@@ -136,14 +164,19 @@ function _cartCalc(){
 	  //запускаем перерисовку ajax корзины
 	  if(action){
 			var param=[];
-			param[0]='plus';
-			param[1]=action;
+			param[0]=false; // перерисовывать корзину
+ 			param[1]=action;
 			param[2]=b
+			//меняем динамически сумму
+			  sum_tovara=b*price; 
+			  itogsumm=parseInt(itogsumm)+parseInt(price);
+			  $("span#"+sum_id).text(sum_tovara);
+			  $('#itogsumm').text(itogsumm);
 					  
-			pereschet_itogo(param); 
+			pereschet_itogo_bez_prorisivki(param);  
 	  } else {
 			//перезаписываем куки
-			var 	param=[];
+			var param=[];
 			param[0]=id; // id
 			param[1]=parseInt(real_price);  // стоимость
 			param[2]=b // количество
@@ -163,7 +196,7 @@ function pereschet_itogo(param){
 		  dataType: 'html', // тип ожидаемых данных в ответе
 		  data: {key: param}, // данные, которые передаем на сервер
 		  beforeSend: function(){ // Функция вызывается перед отправкой запроса
-			output.text('Запрос отправлен. Ждите ответа.');
+			//output.text('Запрос отправлен. Ждите ответа.');
 		  },
 		  error: function(req, text, error){ // отслеживание ошибок во время выполнения ajax-запроса
 			output.text('Хьюстон, У нас проблемы! ' + text + ' | ' + error);
@@ -177,6 +210,18 @@ function pereschet_itogo(param){
 			cartCalc();
 			delCartUn();
 			}
+		});
+	
+}
+
+function pereschet_itogo_bez_prorisivki(param){
+		 // Блок перерисовки корзины в режиме ajax
+		  
+		$.ajax({
+		  url: '/itogsumm-pereschet.html', // путь к php-обработчику
+		  type: 'POST', // метод передачи данных
+		  dataType: 'html', // тип ожидаемых данных в ответе
+		  data: {key: param} // данные, которые передаем на сервер
 		});
 	
 }
@@ -276,4 +321,14 @@ function messageQ3(){
 
 function messageQ(){
     $('#cart1').modal('show');   
+}
+
+function get_cookie ( cookie_name )
+{
+  var results = document.cookie.match ( '(^|;) ?' + cookie_name + '=([^;]*)(;|$)' );
+ 
+  if ( results )
+    return ( unescape ( results[2] ) );
+  else
+    return null;
 }
