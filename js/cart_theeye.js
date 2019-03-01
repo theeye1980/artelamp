@@ -5,7 +5,7 @@ function cartOpener(){
     $('.cartclose').slideToggle();
 	
   });
-  // скрываем раскрытый блок летающей корзины, если кликаем не по ней и не по вложенным элементам
+  
   $(document).mouseup(function (e) {
     var container = $('.headercart');
 		if (container.has(e.target).length === 0){
@@ -57,7 +57,7 @@ function cartCalc(){
 	var price = $(this).data('price'); //мои потуги
 	var action = $(this).data('action'); //мои потуги
 	var  sum_id='sum_'+action;
-	var itogsumm = $('#itogsumm').html(); 
+	var itogsumm = $('#itogsumm').html();
 	
     
 	var a = $(this).closest('.cartcalc').find('input').val();
@@ -68,11 +68,13 @@ function cartCalc(){
 	total_goods=parseInt(total_goods);
 	console.log('total_goods: ', total_goods);
 	console.log('id: ', id);
+	console.log('itogsumm: ', itogsumm);
 	
 	var price_i=$(this).parent().parent().parent(); //	 ('.cartcloseun2 span');
 	var real_price=$(price_i).find("span").html();
 	
 	var sum=$('#final_fly_cart_sum').html();
+	
 	sum=$.trim(sum);
 	sum=parseInt(sum);
 	
@@ -109,9 +111,11 @@ function cartCalc(){
 		  //перезаписываем куки
 			var 	param=[];
 			param[0]=id; // id
-			param[1]=parseInt(real_price);  // стоимость
+			
 			param[2]=b // количество
 			ajax_cookie(param);
+			
+			
 		  
 	  }
 	  
@@ -119,6 +123,17 @@ function cartCalc(){
 	  
     }else{
       $(this).closest('.cartcalc').find('input').val(a);
+	  // Скрываем элемент
+		$('.' + id).hide();
+		var new_sum=sum-price;	
+		console.log('new_sum: ', new_sum);
+		$('#final_fly_cart_sum').html(new_sum + ' руб.');
+		//перезаписываем куки
+			var 	param=[];
+			param[0]=id; // id
+			param[1]=true;  // стоимость
+			param[2]=b // количество
+			ajax_cookie(param);
     }
 	
   });
@@ -178,7 +193,7 @@ function cartCalc(){
 			//перезаписываем куки
 			var param=[];
 			param[0]=id; // id
-			param[1]=parseInt(real_price);  // стоимость
+			//param[1]=false;  // надо ли удалять куку?
 			param[2]=b // количество
 			ajax_cookie(param);
 	  }
